@@ -1,0 +1,26 @@
+apiVersion: v1                                                        
+kind: Pod
+metadata:
+    name: webapp-pod
+  labels:
+     app: webapp-ws
+spec:
+   containers:
+     -name: webapp-container
+      image: blackicebird/2048
+      ports:
+        - containerPort:80
+apiVersion: v1
+kind: Service
+metadata:
+    name: mygame-svc
+spec:
+    selector:
+       app: webapp-ws
+     ports:
+       -protocol: TCP
+        port: 80
+        targetPort: 80
+      type: LoadBalancer
+                    
+  
